@@ -17,7 +17,7 @@ class Tile
 	end
 
 	def setMarked
-		return if @count < 0
+		return if @count >= 0
 		@label = "?"
 	end
 
