@@ -39,7 +39,7 @@ class Tile
 
 				next if nx < 0 || nx >= @width || ny < 0 || ny >= @height
 
-				i = ny * @width + nx
+				i = nx * @height + ny
 				@count += 1 if i >= 0 && i < @tiles.size && @tiles[i].isBomb
 			end
 		end
@@ -59,7 +59,7 @@ class Tile
 				nx = cx + x - 1
 				next if nx < 0 || nx >= @width || ny < 0 || ny >= @height
 
-				i = ny * @width + nx
+				i = nx * @height + ny
 				next if i < 0 || i >= @tiles.size
 
 				tile = @tiles[i]
@@ -74,5 +74,19 @@ class Tile
 		outputs.solids << [*@position, @size, @size]
 		outputs.solids << [@position.x + @padding, @position.y + @padding, @size - @padding, @size - @padding, *@color]
 		outputs.labels << [@position.x + @size / 2, @position.y + @size, @label, 1, 1, 255, 255, 255, 255]
+	end
+
+	def to_s
+		["isBomb #{@isBomb}",
+		"count #{@count}",
+		"label #{@label}",
+		"revealed #{@revealed}",
+		"color #{@color}",
+		"size #{@size}",
+		"padding #{@padding}"]
+	end
+
+	def self.get_index x, y, h
+		return x * h + y
 	end
 end

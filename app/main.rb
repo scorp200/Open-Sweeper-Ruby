@@ -1,7 +1,7 @@
 require "app/lib/tile.rb"
 
 def tick args
-	defaults args.state
+	defaults args.state if args.state.tick_count == 0
 	render args.state, args.outputs
 	input args.state, args.inputs
 	update args.state
@@ -51,25 +51,22 @@ def input state, inputs
 end
 
 def defaults state
-	state.bombs ||= 30
-	state.firstTouch ||= true
-	state.tiles ||= []
-	state.que ||= []
-	state.width ||= 20
-	state.height ||= 20
-	state.size  ||= 30
-	state.wSize ||= state.size * state.width
-	state.hSize ||= state.size * state.height
+	state.bombs = 30
+	state.firstTouch = true
+	state.tiles = []
+	state.que = []
+	state.width = 20
+	state.height = 20
+	state.size  = 30
+	state.wSize = state.size * state.width
+	state.hSize = state.size * state.height
 
-	if state.tiles.size == 0
-		state.width.map_with_index do |x|
-			state.height.map_with_index do |y|
-				i = x * state.height + y
-				tile = Tile.new state.tiles, state.que, state.width, state.height, state.size
-				tile.position = [x * state.size, y * state.size]
-				state.tiles.append tile
-			end
+	state.width.map_with_index do |x|
+		state.height.map_with_index do |y|
+			i = x * state.height + y
+			tile = Tile.new state.tiles, state.que, state.width, state.height, state.size
+			tile.position = [x * state.size, y * state.size]
+			state.tiles.append tile
 		end
-		puts state.tiles.size
 	end
 end
