@@ -31,14 +31,15 @@ class Tile
 	def countBombs cx, cy
 		return if @isBomb || @count >= 0
 		@count = 0
+
 		3.map_with_index do |x|
 			3.map_with_index do |y|
-				puts x, y
-				ny = cy + y - 1
 				nx = cx + x - 1
+				ny = cy + y - 1
+
 				next if nx < 0 || nx >= @width || ny < 0 || ny >= @height
 
-				i = nx * @height + ny
+				i = ny * @width + nx
 				@count += 1 if i >= 0 && i < @tiles.size && @tiles[i].isBomb
 			end
 		end
@@ -58,7 +59,7 @@ class Tile
 				nx = cx + x - 1
 				next if nx < 0 || nx >= @width || ny < 0 || ny >= @height
 
-				i = nx * @height + ny
+				i = ny * @width + nx
 				next if i < 0 || i >= @tiles.size
 
 				tile = @tiles[i]
