@@ -13,6 +13,7 @@ class Tile
 		@revealed = false
 		@color = [165, 214, 167, 255]
 		@size = size
+		@padding = ~~(@size * 0.1)
 	end
 
 	def setMarked
@@ -32,19 +33,19 @@ class Tile
 		@count = 0
 		3.map_with_index do |x|
 			3.map_with_index do |y|
+				puts x, y
 				ny = cy + y - 1
 				nx = cx + x - 1
 				next if nx < 0 || nx >= @width || ny < 0 || ny >= @height
 
 				i = nx * @height + ny
-				count += 1 if i >= 0 && i < @tiles.size && @tiles[i].isBomb
+				@count += 1 if i >= 0 && i < @tiles.size && @tiles[i].isBomb
 			end
 		end
 
 		revealNeighbors cx, cy if @count == 0
-		if count > 0
-			@label = "#{@count}"
-		end
+		@label = "#{@count}" if count > 0
+
 		return @count
 	end
 
@@ -69,8 +70,8 @@ class Tile
 	end
 
 	def render outputs
-		outputs.solids << [*@position, @size, @size, *@color]
-		outputs.solids << [*@position, @size, @size, *@color]
+		outputs.solids << [*@position, @size, @size]
+		outputs.solids << [@position.x + @padding, @position.y + @padding, @size - @padding, @size - @padding, *@color]
 		outputs.labels << [@position.x + @size / 2, @position.y + @size, @label, 1, 1, 255, 255, 255, 255]
 	end
 end

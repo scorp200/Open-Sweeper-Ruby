@@ -57,12 +57,11 @@ def defaults state
 	state.que ||= []
 	state.width ||= 20
 	state.height ||= 20
-	state.size = 30
-	state.wSize = state.size * state.width
-	state.hSize = state.size * state.height
-	state.ready ||= false
+	state.size  ||= 30
+	state.wSize ||= state.size * state.width
+	state.hSize ||= state.size * state.height
 
-	if !state.ready
+	if state.tiles.size == 0
 		state.width.map_with_index do |x|
 			state.height.map_with_index do |y|
 				i = x * state.height + y
@@ -72,6 +71,5 @@ def defaults state
 			end
 		end
 		puts state.tiles.size
-		state.ready = true
 	end
 end
