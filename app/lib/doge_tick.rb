@@ -3,10 +3,12 @@
 # Usage:
 # After tick:
 # DogeTick.post["action_name"] = -> args {
+# 	args = args[:args]
 # 	# Your action goes here
 # }
 # Before tick:
 # DogeTick.pre["action_name"] = -> args {
+# 	args = args[:args]
 # 	# Your action goes here
 # }
 
