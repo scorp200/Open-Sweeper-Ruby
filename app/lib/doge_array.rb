@@ -1,5 +1,7 @@
-#Doge arra extensions
-#By Anton K. (ai Doge) https://aidoge.net
+# Doge array extensions
+
+# Credit:
+# By Anton K. (ai Doge) https://aidoge.net
 class Array
 	#Modify self
 	def add! array
@@ -91,5 +93,11 @@ class Array
 				d / array
 			end
 		end
+	end
+
+	def dist_squared array
+		x = self.x - array.x
+		y = self.y - array.y
+		return x * x + y * y
 	end
 end

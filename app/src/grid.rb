@@ -47,11 +47,12 @@ class Grid
 		end
 	end
 
-	def input inputs
-		if inputs.mouse.click
-			pos = inputs.mouse.position
-			x = ~~(pos.x / (@size * inputs.zoom || 1))
-			y = ~~(pos.y / (@size * inputs.zoom || 1))
+	def input state, inputs
+		if inputs.mouse.up
+			pos = inputs.mouse.local_position
+			zoom = state.camera.zoom
+			x = ~~(pos.x / (@size * zoom || 1))
+			y = ~~(pos.y / (@size * zoom || 1))
 			pp x,y
 			tile = get_tile x, y
 			return if tile.nil?
