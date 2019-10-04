@@ -2,7 +2,7 @@ require "app/lib/doge_tick.rb"
 require "app/lib/doge_array.rb"
 require "app/lib/doge_mouse.rb"
 require "app/lib/utils.rb"
-require "app/lib/camera.rb"
+require "app/lib/doge_camera.rb"
 require "app/src/tile.rb"
 require "app/src/grid.rb"
 
