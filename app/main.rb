@@ -3,6 +3,8 @@ require "app/lib/doge_array.rb"
 require "app/lib/doge_mouse.rb"
 require "app/lib/utils.rb"
 require "app/lib/doge_camera.rb"
+require "app/lib/font.rb"
+
 require "app/src/tile.rb"
 require "app/src/grid.rb"
 
@@ -30,10 +32,16 @@ def input state, inputs
 	elsif inputs.mouse.button_up
 		state.grid.input state, inputs
 	end
+
+	if inputs.keyboard.key_down.up
+		state.camera.zoom += 0.1
+	elsif inputs.keyboard.key_down.down
+		state.camera.zoom -= 0.1
+	end
 end
 
 def defaults state
 	state.grid ||= Grid.new 20, 20, 30, 30
-	state.camera ||= Camera.new [-360, -90], 3
+	state.camera ||= Camera.new [-360, -90], 1
 	state.bg ||= state.camera.add_ignore([0, 0, 1280, 720, 0, 0, 0, 255])
 end

@@ -11,15 +11,23 @@
 # By Anton K. (ai Doge) https://aidoge.net
 module GTK
 	class Mouse
-		attr_accessor :dragging, :dragging_dist, :previous_position, :button_up
+		attr_accessor :dragging, :dragging_dist, :previous_position, :button_up, :last_button
 	end
 end
 
 DogeTick.pre["doge_mouse_pre"] = -> args {
 	mouse = args[:args].inputs.mouse
+	mouse.button_up = false
 	if mouse.click
 		mouse.previous_position = mouse.position
 		@timer = 0
+		if mouse.button_left
+			mouse.last_button = :left
+		elsif mouse.button_right
+			mouse.last_button = :right
+		else
+			mouse.last_button = :none
+		end
 	end
 	if mouse.down
 		@held = true

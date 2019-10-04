@@ -40,20 +40,19 @@ class Grid
 	def update state
 		if @que.size > 0
 			@que.map do |d|
-				d.setRevealed
-				d.countBombs self
+				d.set_revealed
+				d.count_bombs self
 				@que.delete d
 			end
 		end
 	end
 
 	def input state, inputs
-		if inputs.mouse.up
+		if inputs.mouse.last_button == :left
 			pos = inputs.mouse.local_position
 			zoom = state.camera.zoom
 			x = ~~(pos.x / (@size * zoom || 1))
 			y = ~~(pos.y / (@size * zoom || 1))
-			pp x,y
 			tile = get_tile x, y
 			return if tile.nil?
 
@@ -62,8 +61,17 @@ class Grid
 				@ready = true
 			end
 
-			tile.setRevealed
-			tile.countBombs self
+			tile.set_revealed
+			tile.count_bombs self
+		elsif inputs.mouse.last_button == :right
+			pos = inputs.mouse.local_position
+			zoom = state.camera.zoom
+			x = ~~(pos.x / (@size * zoom || 1))
+			y = ~~(pos.y / (@size * zoom || 1))
+			tile = get_tile x, y
+			return if tile.nil?
+
+			tile.set_market
 		end
 	end
 

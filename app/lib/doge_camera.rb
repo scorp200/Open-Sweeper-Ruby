@@ -27,6 +27,11 @@ class Camera
 			d.sub!(@position)
 			d.mult!([@zoom] * 4)
 		end if args.outputs.solids.size > 0
+		args.outputs.sprites.each do |d|
+			next if @ignore[d]
+			d.sub!(@position)
+			d.mult!([@zoom] * 4)
+		end if args.outputs.sprites.size > 0
 		args.outputs.labels.each do |d|
 			d.sub!(@position)
 			d.mult!([@zoom] * 2)
