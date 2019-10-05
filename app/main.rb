@@ -24,6 +24,7 @@ end
 def render state, outputs
 	outputs.solids << state.bg
 	state.grid.render outputs
+	outputs.labels << [100,600, "#{~~$gtk.current_framerate}",1, 1, 255, 255, 255, 255]
 end
 
 def input state, inputs
@@ -42,6 +43,6 @@ end
 
 def defaults state
 	state.grid ||= Grid.new 20, 20, 30, 30
-	state.camera ||= Camera.new [-360, -90], 1
+	state.camera ||= Camera.new [0, 0], 1
 	state.bg ||= state.camera.add_ignore([0, 0, 1280, 720, 0, 0, 0, 255])
 end

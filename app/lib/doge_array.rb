@@ -5,94 +5,127 @@
 class Array
 	#Modify self
 	def add! array
+		i = 0
 		if array.is_a? Array
-			self.size.lesser(array.size).map_with_index do |i|
+			while i < self.size && i < array.size do
 				self[i] += array[i]
+				i += 1
 			end
 		else
-			self.map do |d|
-				d += array
+			while i < self.size do
+				self[i] += array
+				i += 1
 			end
 		end
 	end
 	def sub! array
+		i = 0
 		if array.is_a? Array
-			self.size.lesser(array.size).map_with_index do |i|
+			while i < self.size && i < array.size do
 				self[i] -= array[i]
+				i += 1
 			end
 		else
-			self.map do |d|
-				d -= array
+			while i < self.size do
+				self[i] -= array
+				i += 1
 			end
 		end
 	end
 	def mult! array
+		i = 0
 		if array.is_a? Array
-			self.size.lesser(array.size).map_with_index do |i|
+
+			while i < self.size && i < array.size do
 				self[i] *= array[i]
+				i += 1
 			end
 		else
-			self.map do |d|
-				d *= array
+			while i < self.size do
+				self[i] *= array
+				i += 1
 			end
 		end
 	end
 	def div! array
+		i = 0
 		if array.is_a? Array
-			self.size.lesser(array.size).map_with_index do |i|
+			while i < self.size && i < array.size do
 				self[i] /= array[i]
+				i += 1
 			end
 		else
-			self.map do |d|
-				d /= array
+			while i < self.size do
+				self[i] /= array
+				i += 1
 			end
 		end
 	end
 
 	#Modify and return a new array
 	def add array
+		i = 0
+		arr = []
 		if array.is_a? Array
-			return self.size.lesser(array.size).map_with_index do |i|
-				self[i] + array[i]
+			while i < self.size && i < array.size do
+				arr << self[i] + array[i]
+				i += 1
 			end
 		else
-			return self.map do |d|
-				d + array
+			while i < self.size do
+				arr << self[i] + array
+				i += 1
 			end
 		end
+		return arr
 	end
 	def sub array
+		i = 0
+		arr = []
 		if array.is_a? Array
-			return self.size.lesser(array.size).map_with_index do |i|
-				self[i] - array[i]
+			while i < self.size && i < array.size do
+				arr << self[i] - array[i]
+				i += 1
 			end
 		else
-			return self.map do |d|
-				d - array
+			while i < self.size do
+				arr << self[i] - array
+				i += 1
 			end
 		end
+		return arr
 	end
 	def mult array
+		i = 0
+		arr = []
 		if array.is_a? Array
-			return self.size.lesser(array.size).map_with_index do |i|
-				self[i] * array[i]
+			while i < self.size && i < array.size do
+				arr << self[i] * array[i]
+				i += 1
 			end
 		else
-			return self.map do |d|
-				d * array
+			while i < self.size do
+				arr << self[i] * array
+				i += 1
 			end
 		end
+		return arr
 	end
 	def div array
+		i = 0
+		arr = []
 		if array.is_a? Array
-			return self.size.lesser(array.size).map_with_index do |i|
-				self[i] / array[i]
+			while i < self.size && i < array.size do
+				arr << self[i] / array[i]
+				i += 1
 			end
 		else
-			return self.map do |d|
-				d / array
+			while i < self.size do
+				arr << self[i] / array
+				i += 1
 			end
 		end
+		return arr
 	end
 
 	def dist_squared array

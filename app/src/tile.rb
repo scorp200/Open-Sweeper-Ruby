@@ -66,7 +66,7 @@ class Tile
 
 	def render outputs
 		# outputs.solids << [*@index.mult(@size), @size, @size]
-		outputs.solids << [*@index.mult(@size).add(@padding), @size - @padding, @size - @padding, *@color]
+		outputs.sprites << [*@index.mult(@size).add(@padding), @size - @padding, @size - @padding, "img/tile.png",0 , *@color]
 		#outputs.labels << [@index.x + @size / 2, @index.y + @size, "#{@index.x}, #{@index.y}", -2, 1, 255, 255, 255, 255]
 		#outputs.labels << [*@index.mult(@size).add([@size/2, @size]), @label, 1, 1, 255, 255, 255, 255] if @label != ""
 		outputs.sprites << [*@index.mult(@size).add([@size/2, @size]).sub([4, 24]), *Font.draw_letter(@label)] if @label != ""

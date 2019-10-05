@@ -22,20 +22,28 @@ class Camera
 	end
 
 	def render args
-		args.outputs.solids.each do |d|
+		# args.outputs.solids.each do |d|
+		# 	next if @ignore[d]
+		# 	d.sub!(@position)
+		# 	d.mult!([@zoom] * 4)
+		# end if args.outputs.solids.size > 0
+		i = 0
+		while i < args.outputs.sprites.size
+			d = args.outputs.sprites[i]
 			next if @ignore[d]
-			d.sub!(@position)
-			d.mult!([@zoom] * 4)
-		end if args.outputs.solids.size > 0
-		args.outputs.sprites.each do |d|
-			next if @ignore[d]
-			d.sub!(@position)
-			d.mult!([@zoom] * 4)
-		end if args.outputs.sprites.size > 0
-		args.outputs.labels.each do |d|
-			d.sub!(@position)
-			d.mult!([@zoom] * 2)
-		end if args.outputs.labels.size > 0
+			# d.sub!(@position)
+			# d.mult!([@zoom] * 4)
+			i += 1
+		end
+		# args.outputs.sprites.each do |d|
+		# 	next if @ignore[d]
+		# 	d.sub!(@position)
+		# 	d.mult!([@zoom] * 4)
+		# end if args.outputs.sprites.size > 0
+		# args.outputs.labels.each do |d|
+		# 	d.sub!(@position)
+		# 	d.mult!([@zoom] * 2)
+		# end if args.outputs.labels.size > 0
 	end
 
 	def input args
